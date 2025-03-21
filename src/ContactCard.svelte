@@ -217,6 +217,12 @@
 				<p>{qCard.website}</p>
 			</div>
 			{/if}
+
+			{#if qCard.xmpp}
+			<div id="detail">
+				<p>{qCard.xmpp}</p>
+			</div>
+			{/if}
 			
 			{#if qCard.comment}
 			<div id="detail">
