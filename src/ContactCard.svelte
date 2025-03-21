@@ -1,3 +1,4 @@
+<!-- contactcard.svelte -->
 <style>
 	article {
 		display: flex;
@@ -22,13 +23,13 @@
 		margin-bottom: 10px;
 	}
 	
-	#comment {
+	#detail {
 		padding: 5px 0px;
 		border-left: 7px solid whitesmoke;
 		overflow: hidden;
 	}
 
-	#comment p {
+	#detail p {
 		margin: 5px 10px;
 		font-size: 1em;
 		word-break: break-word;
@@ -192,8 +193,33 @@
 				{/if}
 			</header>
 
+			<!-- Adding more details -->
+			{#if qCard.phone}
+			<div id="detail">
+				<p>{qCard.phone}</p>
+			</div>
+			{/if}
+
+			{#if qCard.email}
+			<div id="detail">
+				<p>{qCard.email}</p>
+			</div>
+			{/if}
+
+			{#if qCard.address}
+			<div id="detail">
+				<p>{qCard.address}</p>
+			</div>
+			{/if}
+
+			{#if qCard.website}
+			<div id="detail">
+				<p>{qCard.website}</p>
+			</div>
+			{/if}
+			
 			{#if qCard.comment}
-			<div id="comment">
+			<div id="detail">
 				<p>{qCard.comment}</p>
 			</div>
 			{/if}
