@@ -44,10 +44,11 @@
 
 	.detail-label {
 		font-size: 0.8em;
-		color: #666;
+		color: #4d4b4b;
 		margin-left: 10px;
 		margin-bottom: 2px;
 		text-transform: uppercase;
+		font-weight: bold;
 	}
 
 	.detail-container p {
@@ -238,15 +239,29 @@
 		{#if qCard.xmpp}
 		<div class="detail-divider"></div>
 		<div class="detail-container">
-			<div class="detail-label">XMPP</div>
+			<div class="detail-label">WhatsaApp No.</div>
 			<div class="detail-content">
 				<p>{qCard.xmpp}</p>
 				<a href="xmpp:{qCard.xmpp}" target="_blank" alt="{qCard.xmpp}">
-					<img src="/icons/xmpp.svg" alt="XMPP icon"/>
+					<img src="/icons/whatsapp.svg" alt="WhatsApp icon"/>
 				</a>
 			</div>
 		</div>
 		{/if}
+
+		<!-- WhatApp Number with icon -->
+		<!-- {#if qCard.whatsappnumber}
+		<div class="detail-divider"></div>
+		<div class="detail-container">
+			<div class="detail-label">WhatsaApp No.</div>
+			<div class="detail-content">
+				<p>{qCard.whatsappnumber}</p>
+				<a href="tel:{qCard.whatsappnumber}" alt={qCard.whatsappnumber}>
+					<img src="/icons/whatsapp.svg" alt="WhatsApp icon"/>
+				</a>
+			</div>
+		</div>
+		{/if} -->
 		
 		<!-- Comment (no icon) -->
 		{#if qCard.comment}
