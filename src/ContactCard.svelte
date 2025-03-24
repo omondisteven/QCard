@@ -4,7 +4,6 @@
 		display: flex;
 		flex-direction: column;
 		padding: 1em;
-
 		border-radius: 5px;
 	}
 
@@ -23,16 +22,45 @@
 		margin-bottom: 10px;
 	}
 	
-	#detail {
+	.detail-container {
+		display: flex;
+		flex-direction: column;
 		padding: 5px 0px;
 		border-left: 7px solid whitesmoke;
 		overflow: hidden;
+		margin-bottom: 8px;
 	}
 
-	#detail p {
+	.detail-divider {
+		border-top: 1px solid #e0e0e0;
+		margin: 5px 10px 8px 10px;
+	}
+
+	.detail-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.detail-label {
+		font-size: 0.8em;
+		color: #666;
+		margin-left: 10px;
+		margin-bottom: 2px;
+		text-transform: uppercase;
+	}
+
+	.detail-container p {
 		margin: 5px 10px;
 		font-size: 1em;
 		word-break: break-word;
+		flex-grow: 1;
+	}
+
+	.detail-container img {
+		width: 24px;
+		height: 24px;
+		margin-right: 10px;
 	}
 
 	a img {
@@ -70,44 +98,13 @@
 		padding: 0.2em 0.5em;
 	}
 
-	
 	/*Contact Info*/
-
 	.contact-meta {
 		display:flex;
 		flex-direction: column;
-		justify-content: space-evenly
-
+		justify-content: space-evenly;
+		width: 100%;
 	}
-
-	.contact-info-container {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-
-	}
-
-	.contact-methods {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-	}
-
-	.contact-method-item {
-		padding: 10px;
-		border-top: 2px solid whitesmoke;
-	}
-
-	.contact-method-item img {
-		width:24px;
-		height: 24px;
-	}
-
-	.contact-method-item:first-child
-	{
-		border: none;
-	}
-
 </style>
 
 <script>
@@ -144,24 +141,15 @@
 	}
 
 	function copySelfLink(){
-		// Thank you the World Wide Web <3
-		// https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
-		// Create new element
 		var el = document.createElement('textarea');
-		// Set value (string to be copied)
 		el.value = selfLink;
-		// Set non-editable to avoid focus and move outside of view
 		el.setAttribute('readonly', '');
 		el.style = { display: 'none', position: 'absolute'};
 		document.body.appendChild(el);
-		// Select text inside element
 		el.select();
-		// Copy text to clipboard
 		document.execCommand('copy');
-		// Remove temporary element
 		document.body.removeChild(el);
 
-		// Display Toast Notification to User.
 		var toast = new Toast();
 		toast.success(qCard.name + '\'s ' + 'QCard Copied');
 	}
@@ -180,102 +168,96 @@
 
 	<hr>
 
-	<div class="contact-info-container">
+	<div class="contact-meta">
+		<header>
+			<h1>
+				{qCard.name}
+			</h1>
+			{#if qCard.title}
+			<h2>{qCard.title}</h2>
+			{/if}
+		</header>
 
-		<div class="contact-meta">
-
-			<header>
-				<h1>
-					{qCard.name}
-				</h1>
-				{#if qCard.title}
-				<h2>{qCard.title}</h2>
-				{/if}
-			</header>
-
-			<!-- Adding more details -->
-			{#if qCard.phone}
-			<div id="detail">
+		<!-- Phone with icon -->
+		{#if qCard.phone}
+		<div class="detail-divider"></div>
+		<div class="detail-container">
+			<div class="detail-label">Telephone</div>
+			<div class="detail-content">
 				<p>{qCard.phone}</p>
-			</div>
-			{/if}
-
-			{#if qCard.email}
-			<div id="detail">
-				<p>{qCard.email}</p>
-			</div>
-			{/if}
-
-			{#if qCard.address}
-			<div id="detail">
-				<p>{qCard.address}</p>
-			</div>
-			{/if}
-
-			{#if qCard.website}
-			<div id="detail">
-				<p>{qCard.website}</p>
-			</div>
-			{/if}
-
-			{#if qCard.xmpp}
-			<div id="detail">
-				<p>{qCard.xmpp}</p>
-			</div>
-			{/if}
-			
-			{#if qCard.comment}
-			<div id="detail">
-				<p>{qCard.comment}</p>
-			</div>
-			{/if}
-		</div>
-
-
-		{#if qCard.email || qCard.phone || qCard.website || qCard.address || qCard.xmpp}
-		<div class="contact-methods">
-			{#if qCard.email}
-			<div class="contact-method-item">
-				<a href="mailto:{qCard.email}" alt="{qCard.email}" target="_blank">
-					<img src="/icons/inbox.svg" alt="Email Icon"/>
-				</a>
-			</div>
-			{/if}
-
-			{#if qCard.phone}
-			<div class="contact-method-item">
 				<a href="tel:{qCard.phone}" alt={qCard.phone}>
 					<img src="/icons/phone.svg" alt="Phone Icon"/>
 				</a>
 			</div>
-			{/if}
+		</div>
+		{/if}
 
-			{#if qCard.xmpp}
-			<div class="contact-method-item">
-				<a href="xmpp:{qCard.xmpp}" target="_blank" alt="{qCard.xmpp}">
-					<img src="/icons/xmpp.svg" alt="XMPP icon"/>
+		<!-- Email with icon -->
+		{#if qCard.email}
+		<div class="detail-divider"></div>
+		<div class="detail-container">
+			<div class="detail-label">Email</div>
+			<div class="detail-content">
+				<p>{qCard.email}</p>
+				<a href="mailto:{qCard.email}" alt="{qCard.email}" target="_blank">
+					<img src="/icons/inbox.svg" alt="Email Icon"/>
 				</a>
 			</div>
-			{/if}
+		</div>
+		{/if}
 
-			{#if qCard.website}
-			<div class="contact-method-item">
-				<a href={qCard.website} target="_blank" alt="Website provided by {qCard.name}">
-					<img src="/icons/link.svg" alt="External Link Icon"/>
-				</a>
-			</div>
-			{/if}
-
-			{#if qCard.address}
-			<div class="contact-method-item">
+		<!-- Address with icon -->
+		{#if qCard.address}
+		<div class="detail-divider"></div>
+		<div class="detail-container">
+			<div class="detail-label">Address</div>
+			<div class="detail-content">
+				<p>{qCard.address}</p>
 				<a href="https://www.openstreetmap.org/search?query={qCard.address}" target="_blank" alt="{qCard.address}">
 					<img src="/icons/map-pin.svg" alt="Location icon"/>
 				</a>
 			</div>
-			{/if}
 		</div>
 		{/if}
 
+		<!-- Website with icon -->
+		{#if qCard.website}
+		<div class="detail-divider"></div>
+		<div class="detail-container">
+			<div class="detail-label">Website</div>
+			<div class="detail-content">
+				<p>{qCard.website}</p>
+				<a href={qCard.website} target="_blank" alt="Website provided by {qCard.name}">
+					<img src="/icons/link.svg" alt="External Link Icon"/>
+				</a>
+			</div>
+		</div>
+		{/if}
+
+		<!-- XMPP with icon -->
+		{#if qCard.xmpp}
+		<div class="detail-divider"></div>
+		<div class="detail-container">
+			<div class="detail-label">XMPP</div>
+			<div class="detail-content">
+				<p>{qCard.xmpp}</p>
+				<a href="xmpp:{qCard.xmpp}" target="_blank" alt="{qCard.xmpp}">
+					<img src="/icons/xmpp.svg" alt="XMPP icon"/>
+				</a>
+			</div>
+		</div>
+		{/if}
+		
+		<!-- Comment (no icon) -->
+		{#if qCard.comment}
+		<div class="detail-divider"></div>
+		<div class="detail-container">
+			<div class="detail-label">Comment</div>
+			<div class="detail-content">
+				<p>{qCard.comment}</p>
+			</div>
+		</div>
+		{/if}
 	</div>
 
 	<hr>
@@ -304,5 +286,3 @@
 
 	</div>
 </article>
-
-
