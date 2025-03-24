@@ -197,9 +197,9 @@
 					document.removeEventListener(visibilityChange, visibilityHandler, false);
 				}
 				
-				if (!whatsAppOpened) {
-					alert("WhatsApp is not installed. Please install WhatsApp to chat.");
-				}
+				// if (!whatsAppOpened) {
+				// 	alert("WhatsApp is not installed. Please install WhatsApp to chat.");
+				// }
 			}, 1000); // Reduced timeout to 1 second
 		} else {
 			// Desktop - open web.whatsapp.com
