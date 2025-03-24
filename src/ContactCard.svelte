@@ -235,14 +235,14 @@
 		</div>
 		{/if}
 
-		<!-- XMPP with icon -->
-		{#if qCard.xmpp}
+		<!-- WhatsApp Number with icon -->
+		{#if qCard.whatsappnumber}
 		<div class="detail-divider"></div>
 		<div class="detail-container">
 			<div class="detail-label">WhatsaApp No.</div>
 			<div class="detail-content">
-				<p>{qCard.xmpp}</p>
-				<a href="xmpp:{qCard.xmpp}" target="_blank" alt="{qCard.xmpp}">
+				<p>{qCard.whatsappnumber}</p>
+				<a href="xmpp:{qCard.whatsappnumber}" target="_blank" alt="{qCard.whatsappnumber}">
 					<img src="/icons/whatsapp.svg" alt="WhatsApp icon"/>
 				</a>
 			</div>
