@@ -162,21 +162,48 @@
 	function handleWhatsAppClick(phoneNumber, event) {
 		event.preventDefault();
 		const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-		const whatsappUrl = isMobile ? `whatsapp://send?phone=${phoneNumber}` : `https://web.whatsapp.com/send?phone=${phoneNumber}`;
 		
 		if (isMobile) {
-			// Try to open WhatsApp app
-			window.location.href = whatsappUrl;
+			// Store visibility state before attempting to open WhatsApp
+			let visibilityChange;
+			if (typeof document.hidden !== "undefined") {
+				visibilityChange = "visibilitychange";
+			} else if (typeof document.msHidden !== "undefined") {
+				visibilityChange = "msvisibilitychange";
+			} else if (typeof document.webkitHidden !== "undefined") {
+				visibilityChange = "webkitvisibilitychange";
+			}
 			
-			// Fallback if WhatsApp isn't installed
+			// Set a flag to track if WhatsApp opened successfully
+			let whatsAppOpened = false;
+			
+			// Listen for visibility changes (happens when app opens)
+			const visibilityHandler = () => {
+				if (document.hidden || document.msHidden || document.webkitHidden) {
+					whatsAppOpened = true;
+				}
+			};
+			
+			if (visibilityChange) {
+				document.addEventListener(visibilityChange, visibilityHandler, false);
+			}
+			
+			// Try to open WhatsApp
+			window.location.href = `whatsapp://send?phone=${phoneNumber}`;
+			
+			// Check after a delay if WhatsApp didn't open
 			setTimeout(() => {
-				if (!document.hidden) {
+				if (visibilityChange) {
+					document.removeEventListener(visibilityChange, visibilityHandler, false);
+				}
+				
+				if (!whatsAppOpened) {
 					alert("WhatsApp is not installed. Please install WhatsApp to chat.");
 				}
-			}, 2000);
+			}, 1000); // Reduced timeout to 1 second
 		} else {
-			// Open web.whatsapp.com in new tab for desktop
-			window.open(whatsappUrl, '_blank');
+			// Desktop - open web.whatsapp.com
+			window.open(`https://web.whatsapp.com/send?phone=${phoneNumber}`, '_blank');
 		}
 	}
 
