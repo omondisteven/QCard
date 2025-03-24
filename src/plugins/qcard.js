@@ -24,7 +24,7 @@ class QCard {
         website,
         comment,
         address,
-        xmpp
+        whatsappnumber
     ) {
         this.name = name
         this.title = title
@@ -33,7 +33,7 @@ class QCard {
         this.website = website
         this.comment = comment
         this.address = address
-        this.xmpp = xmpp
+        this.whatsappnumber = whatsappnumber
     }
 
     toViewUrl() {
@@ -70,7 +70,7 @@ class QCard {
         this.setWebsite(vCard)
         this.setComment(vCard)
         this.setAddress(vCard)
-        this.setXmpp(vCard)
+        this.setWhatsAppNumber(vCard)
         return vCard
     }
 
@@ -104,8 +104,8 @@ class QCard {
         this.setProperty(vCard, 'adr', this.address)
     }
 
-    setXmpp(vCard) {
-        this.setProperty(vCard, 'X-JABBER', this.xmpp)
+    setWhatsAppNumber(vCard) {
+        this.setProperty(vCard, 'tel', this.whatsappnumber)
     }
 
 }

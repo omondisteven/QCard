@@ -43,7 +43,7 @@ export function fromVCard(vCard) {
         getVCardProperty(vCard, "url"),
         getVCardProperty(vCard, "note"),
         getVCardProperty(vCard, "adr"),
-        getVCardProperty(vCard, "X-JABBER"),
+        getVCardProperty(vCard, "tel"),
     )
 }
 

@@ -83,7 +83,7 @@
 		{ id: 'website', type:"url", displayName: "Website", value: '', placeholder: "https://thelute.com"},
 		{ id: 'comment', type:"textarea", displayName: "Comment", value: '', placeholder: "Yes, yes, yes. You never get involved. Except you actually do, all of the time."},
 		{ id: 'address', type:"text", displayName: "Address", value: '', placeholder: "10 Lute Street, 012"},
-		{ id: 'xmpp', type:"tel", displayName: "Whatsa No", value: '', placeholder: "+000 000"},
+		{ id: 'whatsappnumber', type:"tel", displayName: "Whatsa No", value: '', placeholder: "+000 000"},
 		// { id: 'whatsappnumber', type:"tel", displayName: "WhatsApp No.", value: '', placeholder: "+000 000"},
 	];
 
@@ -107,7 +107,7 @@
 				form.target.website? form.target.website.value : "",
 				form.target.comment? form.target.comment.value : "",
 				form.target.address? form.target.address.value : "",
-				form.target.xmpp? form.target.xmpp.value : "",
+				form.target.whatsappnumber? form.target.whatsappnumber.value : "",
 				// form.target.whatsappnumber? form.target.whatsappnumber.value : "",
 			)
 		});

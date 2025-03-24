@@ -159,6 +159,27 @@
 		navigate(`/create/#${qCard.toEncodedString()}`)
 	}
 
+	function handleWhatsAppClick(phoneNumber, event) {
+		event.preventDefault();
+		const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+		const whatsappUrl = isMobile ? `whatsapp://send?phone=${phoneNumber}` : `https://web.whatsapp.com/send?phone=${phoneNumber}`;
+		
+		if (isMobile) {
+			// Try to open WhatsApp app
+			window.location.href = whatsappUrl;
+			
+			// Fallback if WhatsApp isn't installed
+			setTimeout(() => {
+				if (!document.hidden) {
+					alert("WhatsApp is not installed. Please install WhatsApp to chat.");
+				}
+			}, 2000);
+		} else {
+			// Open web.whatsapp.com in new tab for desktop
+			window.open(whatsappUrl, '_blank');
+		}
+	}
+
 </script>
 
 <article class="shadow" style="position:relative">
@@ -239,10 +260,11 @@
 		{#if qCard.whatsappnumber}
 		<div class="detail-divider"></div>
 		<div class="detail-container">
-			<div class="detail-label">WhatsaApp No.</div>
+			<div class="detail-label">WhatsApp</div>
 			<div class="detail-content">
 				<p>{qCard.whatsappnumber}</p>
-				<a href="xmpp:{qCard.whatsappnumber}" target="_blank" alt="{qCard.whatsappnumber}">
+				<!-- svelte-ignore a11y-invalid-attribute -->
+				<a href="#" on:click|preventDefault={e => handleWhatsAppClick(qCard.whatsappnumber, e)} alt="Chat on WhatsApp">
 					<img src="/icons/whatsapp.svg" alt="WhatsApp icon"/>
 				</a>
 			</div>
