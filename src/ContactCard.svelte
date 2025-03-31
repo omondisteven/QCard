@@ -1,10 +1,13 @@
 <!-- contactcard.svelte -->
+<!-- contactcard.svelte -->
 <style>
 	article {
 		display: flex;
 		flex-direction: column;
 		padding: 1em;
 		border-radius: 5px;
+		border: 5px solid #2f363d; /* Thicker, darker border */
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Maintain shadow at bottom */
 	}
 
 	h1 {
@@ -297,21 +300,7 @@
 			</div>
 		</div>
 		{/if}
-
-		<!-- WhatApp Number with icon -->
-		<!-- {#if qCard.whatsappnumber}
-		<div class="detail-divider"></div>
-		<div class="detail-container">
-			<div class="detail-label">WhatsaApp No.</div>
-			<div class="detail-content">
-				<p>{qCard.whatsappnumber}</p>
-				<a href="tel:{qCard.whatsappnumber}" alt={qCard.whatsappnumber}>
-					<img src="/icons/whatsapp.svg" alt="WhatsApp icon"/>
-				</a>
-			</div>
-		</div>
-		{/if} -->
-		
+	
 		<!-- Comment (no icon) -->
 		{#if qCard.comment}
 		<div class="detail-divider"></div>
