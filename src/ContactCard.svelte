@@ -38,7 +38,7 @@
 		display: flex;
 		flex-direction: column;
 		padding: 5px 0px;
-		border-left: 7px solid rgb(22, 3, 109);
+		border-left: 7px solid rgb(78, 78, 82);
 		overflow: hidden;
 		margin-bottom: 8px;
 		transition: all 0.2s ease;
@@ -61,7 +61,7 @@
 	}
 
 	.bottom-top-divider {
-		border-top: 5px solid #170370;
+		border-top: 5px solid #525058;
 		margin: 5px 10px 8px 10px;
 	}
 
