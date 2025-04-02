@@ -253,7 +253,7 @@
 		<QRCode dataToEncode={selfLink}/>
 	</a>
 
-	<hr class="bottom-top-divider">
+	<hr>
 
 	<div class="contact-meta ">
 		<header>
@@ -348,7 +348,7 @@
 		{/if}
 	</div>
 
-	<hr class="bottom-top-divider">
+	<hr>
 
 	<div class="button-container">
 
