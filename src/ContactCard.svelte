@@ -1,5 +1,4 @@
 <!-- contactcard.svelte -->
-<!-- contactcard.svelte -->
 <style>
 	article {
 		display: flex;
@@ -14,11 +13,21 @@
 		color: #2f363d;
 		margin: 0;
 		line-height: 0.9em;
+		transition: color 0.2s ease;
+	}
+
+	h1:hover {
+		color: #170370;
 	}
 
 	h2 {
 		font-size: 1.2em;
 		margin: 0;
+		transition: color 0.2s ease;
+	}
+
+	h2:hover {
+		color: #170370;
 	}
 
 	header {
@@ -29,13 +38,30 @@
 		display: flex;
 		flex-direction: column;
 		padding: 5px 0px;
-		border-left: 7px solid whitesmoke;
+		border-left: 7px solid rgb(22, 3, 109);
 		overflow: hidden;
 		margin-bottom: 8px;
+		transition: all 0.2s ease;
+	}
+
+	.detail-container:hover {
+		background-color: rgba(23, 3, 112, 0.05);
+		border-left-width: 10px;
 	}
 
 	.detail-divider {
 		border-top: 1px solid #e0e0e0;
+		margin: 5px 10px 8px 10px;
+		transition: border-color 0.2s ease;
+	}
+
+	.detail-container:hover + .detail-divider,
+	.detail-container:hover ~ .detail-divider {
+		border-top-color: rgba(23, 3, 112, 0.2);
+	}
+
+	.bottom-top-divider {
+		border-top: 5px solid #170370;
 		margin: 5px 10px 8px 10px;
 	}
 
@@ -52,6 +78,11 @@
 		margin-bottom: 2px;
 		text-transform: uppercase;
 		font-weight: bold;
+		transition: color 0.2s ease;
+	}
+
+	.detail-container:hover .detail-label {
+		color: #170370;
 	}
 
 	.detail-container p {
@@ -59,6 +90,11 @@
 		font-size: 1em;
 		word-break: break-word;
 		flex-grow: 1;
+		transition: color 0.2s ease;
+	}
+
+	.detail-container:hover p {
+		color: #170370;
 	}
 
 	.detail-container img {
@@ -110,7 +146,6 @@
 		width: 100%;
 	}
 </style>
-
 <script>
 	import Toast from 'svelte-toast'
 	import QRCode from './QRCode.svelte'
@@ -212,15 +247,15 @@
 
 </script>
 
-<article class="shadow" style="position:relative">
+<article class="shadow " style="position:relative">
 
 	<a href={qCard.toViewUrl()} alt="View this QCard">
 		<QRCode dataToEncode={selfLink}/>
 	</a>
 
-	<hr>
+	<hr class="bottom-top-divider">
 
-	<div class="contact-meta">
+	<div class="contact-meta ">
 		<header>
 			<h1>
 				{qCard.name}
@@ -313,7 +348,7 @@
 		{/if}
 	</div>
 
-	<hr>
+	<hr class="bottom-top-divider">
 
 	<div class="button-container">
 
